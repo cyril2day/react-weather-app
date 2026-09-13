@@ -55,6 +55,47 @@ const App = () => {
     fetchWeatherData()
   }, [selectedCity])
 
+  useEffect(() => {
+    if (!data || !data.location) return
+
+    const { location, current_weather, daily, hourly } = data
+
+    const currentWeather = {
+      city:location.name,
+      country: location.country,
+      temperature: current_weather.temperature,
+      feelsLike: current_weather.apparent_temperature || current_weather.temperature,
+      humidity: hourly.relative_humidity_2m[0],
+      windSpeed: current_weather.windspeed,
+      weatherCode: current_weather.weathercode,
+      minTemp: daily.temperature_2m_min[0],
+      maxTemp: daily.temerature_2m_max[0]
+    }
+
+    setWeatherData(currentWeather)
+
+    const forecast = daily.time.slice(1,7).map((date, index) => ({
+      day: new Date(date).toLocaleDateString(undefined, { weekday: 'long' }),
+      minTemp: daily.temperature_2m_min[index + 1],
+      maxTemp: daily.temerature_2m_max[index + 1],
+      weatherCode: daily.weather_code[index + 1]
+    }))
+    setForecastData(forecast)
+
+    const hourlyForecast = hourly.time.slice(0, 24).map((time, index) => ({
+      time: new Date(time).toLocaleDateString(undefined, {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
+      temp: hourly.temperature_2m[index],
+      humidity: hourly.relative_humidity_2m[index],
+      wind: hourly.wind_speed_10m[index],
+      weatherCode: hourly.weather_code[index]
+    }))
+    setHourlyData(hourlyForecast)
+
+  }, [data])
+
   return (
     <div className='min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600'>
       {/* Inner container for spacing*/}
