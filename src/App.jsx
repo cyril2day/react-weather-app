@@ -20,6 +20,17 @@ const App = () => {
     setSelectedCity(city)
   }
 
+  useEffect(()  => {
+    const defaultCity = {
+      name: 'London',
+      country: 'United Kingdom',
+      latitude: 51.5074,
+      longitude: -0.1278
+    }
+
+    setSelectedCity(defaultCity)
+  }, [])
+
   useEffect(() => {
     if(!selectedCity) return
     
@@ -69,7 +80,7 @@ const App = () => {
       windSpeed: current_weather.windspeed,
       weatherCode: current_weather.weathercode,
       minTemp: daily.temperature_2m_min[0],
-      maxTemp: daily.temerature_2m_max[0]
+      maxTemp: daily.temperature_2m_max[0]
     }
 
     setWeatherData(currentWeather)
@@ -77,7 +88,7 @@ const App = () => {
     const forecast = daily.time.slice(1,7).map((date, index) => ({
       day: new Date(date).toLocaleDateString(undefined, { weekday: 'long' }),
       minTemp: daily.temperature_2m_min[index + 1],
-      maxTemp: daily.temerature_2m_max[index + 1],
+      maxTemp: daily.temperature_2m_max[index + 1],
       weatherCode: daily.weather_code[index + 1]
     }))
     setForecastData(forecast)
