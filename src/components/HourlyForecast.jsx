@@ -3,7 +3,7 @@ import HourlyForecastCard from './HourlyForecastCard'
 
 const HourlyForecast = ({ hourlyData }) => {
   return (
-    <div className=''>
+    <div className='mb-8'>
       <h2 className='text-2xl font-bold text-white mb-4'>
         Today&apos;s Weather
       </h2>
