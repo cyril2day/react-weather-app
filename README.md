@@ -1,6 +1,6 @@
-# React Weather App
+# Daily Meteo
 
-This is a weather application that uses React and Vite. It lets users search for any city and view current weather conditions, a 24 hour forecast, and a 6 day forecast.
+Daily Meteo is a weather application that uses React and Vite. It lets users search for any city and view current weather conditions, a 24 hour forecast, and a 6 day forecast.
 
 ---
 
