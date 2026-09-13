@@ -42,7 +42,7 @@ const CurrentWeather = ({ weather }) => {
       </div>
 
       {/* Bottom section: humidity and wind speed cards */}
-      <div className=''>
+      <div className='grid grid-cols-2 gap-4'>
         <HumidityCard humidity={weather.humidity} />
 
         <WindSpeedCard windspeed={weather.windSpeed} />
