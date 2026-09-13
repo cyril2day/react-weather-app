@@ -20,17 +20,6 @@ const App = () => {
     setSelectedCity(city)
   }
 
-  useEffect(()  => {
-    const defaultCity = {
-      name: 'London',
-      country: 'United Kingdom',
-      latitude: 51.5074,
-      longitude: -0.1278
-    }
-
-    setSelectedCity(defaultCity)
-  }, [])
-
   useEffect(() => {
     if(!selectedCity) return
     
